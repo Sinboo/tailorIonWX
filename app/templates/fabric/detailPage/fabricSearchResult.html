@@ -1,0 +1,77 @@
+<ion-view view-title="面料查询结果" >
+  <ion-content class="has-footer">
+    <div class="card" ng-repeat="item in items" >
+      <div class="item">
+        品牌:&nbsp;&nbsp;<span class="positive">{{item.brand.name}}</span>
+            <span class="item-note" ng-click="checkStock(item)">
+              点击查看库存情况
+              <i class="icon ion-ios-arrow-right"></i>
+            </span>
+      </div>
+      <div class="item">
+        <div class="itemRow">
+          <div class="row">
+            <div class="col col-25" style="color: grey">
+              品牌
+            </div>
+            <div class="col ">
+              {{item.brand.name}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-25 colGrey">
+              货号
+            </div>
+            <div class="col ">
+              {{item.productNumber}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-25" style="color: grey">
+              色号
+            </div>
+            <div class="col ">
+              {{item.color}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-25" style="color: grey">
+              成分
+            </div>
+            <div class="col ">
+              {{item.composition}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-25" style="color: grey">
+              纱支
+            </div>
+            <div class="col ">
+              {{item.yarnCount}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-25" style="color: grey">
+              颜色
+            </div>
+            <div class="col ">
+              {{item.colorDesc}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-25" style="color: grey">
+              花纹
+            </div>
+            <div class="col ">
+              {{item.figure}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+  <div class="bar bar-footer">
+    <div class="title"></div>
+  </div>
+</ion-view>

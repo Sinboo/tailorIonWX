@@ -1,0 +1,20 @@
+<ion-view view-title="{{title}}" >
+  <ion-content class="has-footer">
+    <div class="list card">
+      <label class="item item-input">
+        <span class="input-label">货号:</span>
+        <input ng-model="formData.productNumber" type="number">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">色号:</span>
+        <input ng-model="formData.color" placeholder="可不填" type="number">
+      </label>
+    </div>
+    <div class="padding">
+      <button class="button button-full button-positive" ng-click="searchFabric(formData)">查询</button>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer">
+    <div class="title"></div>
+  </div>
+</ion-view>

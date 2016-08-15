@@ -1,0 +1,70 @@
+<ion-view view-title="{{title}}" >
+  <ion-content class="has-footer">
+    <p style="font-size: smaller; color: grey; margin-left: 10px; margin-top: 10px">您可以设置自己的面料收货地址,以便购买面料,可以设置多个</p>
+
+    <form novalidate>
+
+    <div class="list card">
+      <a class="item item-input" href="" modal-select="" ng-model="formData.addressType" options="addressTypes"
+         cancel-button="取消" reset-button="重置" load-list-message="加载中..." modal-title="请选择地址类型">
+        <div class="option">
+          {{option.name}}
+        </div>
+        <span class="input-label">地址类型:</span>
+        <p>{{formData.addressType.name}}</p>
+      </a>
+      <a class="item item-input" href="" modal-select="" ng-model="formData.division" options="divisions"
+         cancel-button="取消" reset-button="重置" load-list-message="加载中..." modal-title="请选择省/直辖市">
+        <div class="option">
+          {{option.name}}
+        </div>
+        <span class="input-label">省/直辖市:</span>
+        <p>{{formData.division.name}}</p>
+      </a>
+      <a class="item item-input" href="" modal-select="" ng-model="formData.cityObj" options="formData.division.cities"
+         cancel-button="取消" reset-button="重置" load-list-message="加载中..." modal-title="请选择地级市/区">
+        <div class="option">
+          {{option.name}}
+        </div>
+        <span class="input-label">地级市/区:</span>
+        <p>{{formData.cityObj.name}}</p>
+      </a>
+      <label class="item item-input" ng-if="formData.addressType.type !== 0">
+        <span class="input-label">地址名称:</span>
+        <input ng-model="formData.name" type="text" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">详细地址:</span>
+        <input ng-model="formData.address" type="text" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input" ng-if="formData.addressType.type == 0">
+        <span class="input-label">单位全称:</span>
+        <input ng-model="formData.fullName" type="text" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input" ng-if="formData.addressType.type == 0">
+        <span class="input-label">单位简称:</span>
+        <input ng-model="formData.shortName" type="text" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">联系人:</span>
+        <input ng-model="formData.contact" type="text" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">联系人手机:</span>
+        <input ng-model="formData.phone" type="number" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">邮编:</span>
+        <input ng-model="formData.zip" type="number" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+    </div>
+
+    <button class="button button-block button-positive" check-form ng-click="validate() && submitAddress()">设置地址</button>
+
+    </form>
+
+  </ion-content>
+  <div class="bar bar-footer">
+    <div class="title"></div>
+  </div>
+</ion-view>

@@ -1,0 +1,53 @@
+<ion-view view-title="{{title}}" >
+  <ion-content class="has-footer">
+    <form novalidate>
+
+    <div class="list card" ng-repeat="formData in formDatas track by $index">
+      <div class="item">
+        <span class="royal">第{{$index + 1}}块面料</span>&nbsp;&nbsp;
+            <span class="item-note" ng-click="deleteFabric($index)">
+              点击删除
+              <i class="icon ion-ios-arrow-right"></i>
+            </span>
+      </div>
+      <label class="item item-input">
+        <span class="input-label">客户姓名:</span>
+        <input ng-model="formData.formData.customerName" type="text" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">货号:</span>
+        <input ng-model="formData.formData.productNumber" type="number" ng-blur="getFabrics(formData.formData.productNumber)" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">色号:</span>
+        <input ng-model="formData.formData.color" placeholder="可不填" ng-blur="getFabrics(formData.formData.productNumber, formData.formData.color)" type="number">
+      </label>
+      <a class="item item-input" href="" modal-select="" ng-model="formData.formData.product" options="queriedProducts"
+         cancel-button="取消" reset-button="重置" load-list-message="加载中..." modal-title="请选择供应商">
+        <div class="option">
+          {{option.brand.name}}
+        </div>
+        <span class="input-label">品牌:</span>
+        <p>{{formData.formData.product.brand.name}}</p>
+      </a>
+      <label class="item item-input">
+        <span class="input-label">数量:</span>
+        <input ng-model="formData.formData.quantity" type="number" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input" style="height: 100px">
+        <span class="input-label">备注:</span>
+        <textarea ng-model="formData.formData.remark" class="panel-bug-textarea"  style="height: 100px" > </textarea>
+      </label>
+    </div>
+
+    <button class="button button-block button-balanced" check-form ng-click="validate() && add()">再买一块</button>
+
+    <button class="button button-block button-positive" check-form ng-click="nextStep()">全选好了,下一步</button>
+
+    </form>
+
+  </ion-content>
+  <div class="bar bar-footer">
+    <div class="title"></div>
+  </div>
+</ion-view>

@@ -1,0 +1,86 @@
+<ion-view view-title="{{title}}" >
+  <ion-content class="has-footer" ion-sticky>
+    <ion-refresher
+      pulling-text="下拉更新..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <div class="row item-divider text-center" style="background-color: inherit!important;" ng-if="choosedType == 0">
+      <div class="col font-thin text-large balanced bl-grey">工厂地址</div>
+      <div class="col font-thin" ng-click="noBackGoTo('fabric.coopModifyAddressMe')">我的地址</div>
+      <div class="col font-thin" ng-click="noBackGoTo('fabric.coopModifyAddressOther')">其他地址</div>
+    </div>
+
+    <div class="row item-divider text-center" style="background-color: inherit!important;" ng-if="choosedType == 1">
+      <div class="col font-thin" ng-click="noBackGoTo('fabric.coopModifyAddressFactory')">工厂地址</div>
+      <div class="col font-thin text-large balanced bl-grey" >我的地址</div>
+      <div class="col font-thin" ng-click="noBackGoTo('fabric.coopModifyAddressOther')">其他地址</div>
+    </div>
+
+    <div class="row item-divider text-center" style="background-color: inherit!important;" ng-if="choosedType == 2">
+      <div class="col font-thin" ng-click="noBackGoTo('fabric.coopModifyAddressFactory')">工厂地址</div>
+      <div class="col font-thin" ng-click="noBackGoTo('fabric.coopModifyAddressMe')">我的地址</div>
+      <div class="col font-thin text-large balanced bl-grey" >其他地址</div>
+    </div>
+
+    <div class="list card" ng-repeat="formData in addresses" ng-click="modifyAddress(formData)">
+      <div class="item">
+        地址{{$index}}:&nbsp;&nbsp;
+            <span class="item-note">
+              点击修改
+              <i class="icon ion-ios-arrow-right"></i>
+            </span>
+      </div>
+      <label class="item item-input">
+        <span class="input-label">地址类型:</span>
+        <p> {{formData.addressType == 1 ? '工厂地址' : addressType[formData.type]}}</p>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">省/直辖市:</span>
+        <p> {{formData.province}}</p>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">地级市/区:</span>
+        <p> {{formData.city}}</p>
+      </label>
+      <label class="item item-input" ng-if="formData.type !== 0">
+        <span class="input-label">地址名称:</span>
+        <p> {{formData.name}}</p>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">详细地址:</span>
+        <p> {{formData.address}}</p>
+      </label>
+      <label class="item item-input" ng-if="choosedType == 0">
+        <span class="input-label">单位全称:</span>
+        <p> {{formData.fullName}}</p>
+      </label>
+      <label class="item item-input" ng-if="choosedType == 0">
+        <span class="input-label">单位简称:</span>
+        <p> {{formData.shortName}}</p>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">联系人:</span>
+        <p> {{formData.contact}}</p>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">联系人手机:</span>
+        <p> {{formData.phone}}</p>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">邮编:</span>
+        <p> {{formData.zip}}</p>
+      </label>
+    </div>
+
+    <ion-infinite-scroll ng-if="!noMoreItemsAvailable"
+                         immediate-check="false"
+                         on-infinite="loadMore()"
+                         distance="1%">
+    </ion-infinite-scroll>
+
+  </ion-content>
+  <div class="bar bar-footer">
+    <div class="title"></div>
+  </div>
+</ion-view>

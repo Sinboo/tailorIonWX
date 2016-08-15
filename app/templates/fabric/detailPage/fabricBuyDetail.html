@@ -1,0 +1,155 @@
+<style>
+  .table-head li {
+    font-size: smaller!important;
+  }
+</style>
+<ion-view view-title="{{title}}" >
+  <ion-content class="has-footer">
+    <div ng-if="!generated">
+      <h4>您一共购买了{{itemList.length}}块面料</h4>
+      <p>请仔细检查,确保面料无误:</p>
+      <div ion-table="" class="table">
+        <ion-list>
+          <ion-item class="table-head table-row" >
+            <ul >
+              <li>序号</li>
+              <li>姓名</li>
+              <li>货号</li>
+              <li>色号</li>
+              <li>米</li>
+              <li>价格</li>
+              <li>金额</li>
+            </ul>
+          </ion-item>
+          <ion-item class="table-row" ng-repeat="item in itemList">
+            <ul>
+              <li>{{$index + 1}}</li>
+              <li>{{item.formData.customerName}}</li>
+              <li>{{item.formData.productNumber}}</li>
+              <li>{{item.formData.color}}</li>
+              <li>{{item.formData.quantity}}</li>
+              <li>{{item.formData.product.price}}</li>
+              <li>{{item.formData.quantity * item.formData.product.price}}</li>
+            </ul>
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <a class="item item-input" style="margin-top: 20px" href="" modal-select="" ng-model="formData.address" options="addresses"
+         cancel-button="取消" reset-button="重置" load-list-message="加载中..." modal-title="请选择地址">
+        <div class="option">
+          {{option.name}}
+        </div>
+        <span class="input-label">发往单位:</span>
+        <p>{{formData.address.name}}</p>
+      </a>
+
+      <button class="button button-block button-balanced" ng-disabled="generated" ng-click="validate() && generate()">确认,生成报价单</button>
+    </div>
+
+    <div ng-if="generated">
+      <div class="row">
+        <div class="col">
+          客户名称:{{}}
+        </div>
+        <div class="col">
+          日期: {{dateNow | date: 'yyyy年MM月dd日'}}
+        </div>
+      </div>
+
+      <div ion-table="" class="table">
+        <ion-list>
+          <ion-item class="table-head table-row" >
+            <ul >
+              <li>序号</li>
+              <li>姓名</li>
+              <li>货号</li>
+              <li>色号</li>
+              <li>米</li>
+              <li>价格</li>
+              <li>金额</li>
+            </ul>
+          </ion-item>
+          <ion-item class="table-row" ng-repeat="item in itemList">
+            <ul>
+              <li>{{$index + 1}}</li>
+              <li>{{item.formData.customerName}}</li>
+              <li>{{item.formData.productNumber}}</li>
+              <li>{{item.formData.color}}</li>
+              <li>{{item.formData.quantity}}</li>
+              <li>{{item.formData.product.price}}</li>
+              <li>{{truncateDecimals(big.make(item.formData.quantity).times(item.formData.product.price).toFixed(4), 2)}}</li>
+            </ul>
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <div class="item">
+        <div class="itemRow">
+          <div class="row">
+            <div class="col col-25" style="color: grey">
+              总额
+            </div>
+            <div class="col ">
+              {{truncateDecimals(fabricFee.toFixed(4), 2)}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-25 colGrey">
+              发往单位
+            </div>
+            <div class="col ">
+              {{formData.address.name}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-25" style="color: grey">
+              发货地址
+            </div>
+            <div class="col ">
+              {{formData.address.province + address.city + address.address}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-25" style="color: grey">
+              联系人
+            </div>
+            <div class="col ">
+              {{formData.address.contact}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-25" style="color: grey">
+              联系方式
+            </div>
+            <div class="col ">
+              {{formData.address.phone}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-25" style="color: grey">
+              备注
+            </div>
+            <div class="col ">
+              {{remark}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="button button-block button-royal" ng-disabled="image.ready" ng-click="openFileDialog()">上传付款凭证</button>
+      <a class="item item-image" href="" ng-show="image.ready" ng-click="deleteImage()">
+        <img ng-src="{{image.url}}" />
+      </a>
+      <button class="button button-block button-positive" ng-if="image.ready" ng-click="buyFabric()">确认购买</button>
+
+
+      <form name="uploadForm" role="form" ng-show="false">
+        <input type="file" name="file" class="uploadImage" id="file" /> <br/>
+      </form>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer">
+    <div class="title"></div>
+  </div>
+</ion-view>

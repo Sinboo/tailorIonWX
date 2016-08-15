@@ -1,0 +1,65 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <!--Upper TABS -->
+    <ion-tabs class="tabs-top tabs-striped " ng-class="{'tabs-item-hide': shouldHide()}">
+      <ion-tab  title="查面料" ui-sref="fabric.fabricSearch()" hidden="{{!getState('fabric')}}" >
+        <ion-nav-view name="fabric-search"></ion-nav-view>
+      </ion-tab>
+      <ion-tab  title="买面料" ui-sref="fabric.fabricBuy()" hidden="{{!getState('fabric')}}" >
+        <ion-nav-view name="fabric-buy"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab  title="申请采购合作" ui-sref="fabric.coopApplication()" hidden="{{!getState('coop')}}" >
+        <ion-nav-view name="coop-application"></ion-nav-view>
+      </ion-tab>
+      <ion-tab  title="设置收货地址" ui-sref="fabric.coopSetAddress()" hidden="{{!getState('coop')}}" >
+        <ion-nav-view name="coop-setAddress"></ion-nav-view>
+      </ion-tab>
+      <ion-tab  title="修改收货地址" ui-sref="fabric.coopModifyAddressFactory()" hidden="{{!getState('coop')}}" >
+        <ion-nav-view name="coop-modifyAddress"></ion-nav-view>
+      </ion-tab>
+
+    </ion-tabs>
+
+
+
+    <!--Bottom TABS -->
+    <div class="tabs tabs-icon-top" ng-show="!shouldHide()" >
+      <a class="tab-item" ui-sref="fabric.fabricSearch()"  ng-class="getClass('fabric')">
+        <i class="icon ion-bag"></i>
+        购买
+      </a>
+      <a class="tab-item" ui-sref="fabric.coopApplication()"   ng-class="getClass('coop')">
+        <i class="icon ion-person-stalker"></i>
+        我要合作
+      </a>
+    </div>
+
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">供应商</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item menu-close ui-sref="fabric.fabricBuy()" >
+          工作台
+        </ion-item>
+        <ion-item menu-close ng-click="">
+          退出登录
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

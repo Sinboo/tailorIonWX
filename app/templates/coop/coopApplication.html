@@ -1,0 +1,60 @@
+<ion-view view-title="{{title}}" >
+  <ion-content class="has-footer">
+    <form novalidate>
+
+    <div class="list card" >
+      <label class="item item-input">
+        <span class="input-label">品牌名:</span>
+        <input ng-model="formData.shortName" type="text" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">公司名称:</span>
+        <input ng-model="formData.merchantName" type="text" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <a class="item item-input" href="" modal-select="" ng-model="formData.shopType" options="shopTypes"
+         cancel-button="取消" reset-button="重置" load-list-message="加载中..." modal-title="请选择供应商">
+        <div class="option">
+          {{option.fullName}}
+        </div>
+        <span class="input-label">类型:</span>
+        <p>{{formData.shopType.fullName}}</p>
+      </a>
+      <label class="item item-input">
+        <span class="input-label">详细地址:</span>
+        <input ng-model="formData.address" type="text" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">联系人:</span>
+        <input ng-model="formData.contact" type="text" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">联系人手机:</span>
+        <input ng-model="formData.phone" type="number" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">邮箱:</span>
+        <input ng-model="formData.email" type="email" bsy-form-validate="mustInputErrorTips" required>
+      </label>
+      <a class="item item-input" href="" modal-select="" ng-model="formData.clientBase" options="clientBases"
+         cancel-button="取消" reset-button="重置" load-list-message="加载中..." modal-title="请选择供应商">
+        <div class="option">
+          {{option}}
+        </div>
+        <span class="input-label">定位客户群:</span>
+        <p>{{formData.clientBase}}</p>
+      </a>
+      <label class="item item-input">
+        <span class="input-label">微信号<span style="color: grey; font-size: smaller">(可不填)</span>:</span>
+        <input ng-model="formData.wechat" type="text" >
+      </label>
+    </div>
+
+    <button class="button button-block button-positive" check-form ng-click="submit()">提交申请</button>
+
+    </form>
+
+  </ion-content>
+  <div class="bar bar-footer">
+    <div class="title"></div>
+  </div>
+</ion-view>
